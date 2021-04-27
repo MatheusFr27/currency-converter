@@ -6,11 +6,19 @@
       <div>
         <h2>Dolar</h2>
         <hr />
-        <p>{{ coins.USDBRL.ask }}</p>
+        <p>$ {{ coins.USDBRL.ask }}</p>
         <router-link
           :to="{
             name: 'Converter',
-            params: { coin: { nameCoin: 'Dolar', coins: coins.USDBRL.ask } },
+            params: {
+              coin: {
+                lang: 'en',
+                typeCoin: 'USD',
+                nameCoin: 'Dolar',
+                coins: coins.USDBRL.ask,
+                icon: '$',
+              },
+            },
           }"
           >Converter Dolar</router-link
         >
@@ -19,11 +27,19 @@
       <div>
         <h2>Euro</h2>
         <hr />
-        <p>{{ coins.EURBRL.ask }}</p>
+        <p>€ {{ coins.EURBRL.ask }}</p>
         <router-link
           :to="{
             name: 'Converter',
-            params: { coin: { nameCoin: 'Euro', coins: coins.EURBRL.ask } },
+            params: {
+              coin: {
+                lang: 'eu',
+                typeCoin: 'EUR',
+                nameCoin: 'Euro',
+                coins: coins.EURBRL.ask,
+                icon: '€',
+              },
+            },
           }"
           >Converter Euro</router-link
         >
@@ -35,13 +51,16 @@
 <script>
 export default {
   data: () => ({
-    coins: "",
+    coins: null,
   }),
   async mounted() {
+    // Fazendo requisição da api
     await this.axios
       .get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL")
       .then((response) => {
-        this.coins = response.data;
+        if (response.data.EURBRL && response.data.USDBRL) {
+          this.coins = response.data;
+        }
       });
   },
 };
