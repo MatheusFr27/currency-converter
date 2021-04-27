@@ -10,7 +10,7 @@ Um simples conversor de moedas brasileiras para Dolar ou Euro. Nessa aplicação
 
 ### Link para testar a aplicação
 
-Link: [Currency Converter Vue](currency-converter-vuejs.netlify.app/)
+Link: [Currency Converter Vue](https://currency-converter-vuejs.netlify.app/)
 
 ### Link da api
 
